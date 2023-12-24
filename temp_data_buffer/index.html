@@ -3,30 +3,30 @@
   <head>    
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" href="static/img/fav/fav.ico" type="image">
-    <link rel="apple-touch-icon" sizes="180x180" href="static/img/fav/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="static/img/fav/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="static/img/fav/favicon-16x16.png">
-    <link rel="stylesheet" href="static/css/bootstrap.min.css">
-    <link rel="stylesheet" href="static/css/style.css">
+    <link rel="icon" href="{{ url_for('static', filename='img/fav/fav.ico') }}" type="image">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ url_for('static', filename='img/fav/apple-touch-icon.png') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ url_for('static', filename='img/fav/favicon-32x32.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ url_for('static', filename='img/fav/favicon-16x16.png') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <title> Мнение о фильме {{ opinion.id }} </title>
   </head>
   <body>	   
     <header class="pt-3">
       <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container">
-          <a class="navbar-brand" href="index.html">            
-            <img src="static/img/logo.svg" height="50" class="" alt="">                       
+          <a class="navbar-brand" href="{{ url_for('index_view') }}">        
+            <img src="{{ url_for('static', filename='img/logo.svg') }}" height="50" class="" alt="">                       
           </a>  
           <div class="d-flex justify-content-end">
             <ul class="nav nav-pills">
               <li class="nav-item pe-5">              
-                <a class="nav-link" href="add.html">
+                <a class="nav-link" href="{{ url_for('add_opinion_view') }}">
                   Добавить мнение о фильме
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="index.html">
+                <a class="nav-link" href="{{ url_for('index_view') }}">
                   Хочу другой фильм
                 </a>
               </li>
@@ -54,7 +54,7 @@
             </p>
           </div>
           <div class="col-12 col-lg-5">
-            <img class="img-fluid mx-auto d-block" src="static/img/illustration.png" alt="">
+            <img class="img-fluid mx-auto d-block" src="{{ url_for('static', filename='img/illustration.png') }}" alt="">
           </div>
         </div>
       </section>
