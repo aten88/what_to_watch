@@ -17,6 +17,7 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SECRET_KEY'] = 'Y652Cx197Zu2ciryc'
 
 db = SQLAlchemy(app)
+
 migrate = Migrate(app, db)
 
 
@@ -43,17 +44,6 @@ class OpinionForm(FlaskForm):
         validators=[Length(1, 256), Optional()]
     )
     submit = SubmitField('Добавить')
-
-
-@app.errorhandler(404)
-def page_not_found(error):
-    return render_template('404.html'), 404
-
-
-@app.errorhandler(500)
-def internal_error(error):
-    db.session.rollback()
-    return render_template('500.html'), 500
 
 
 @app.route('/')
@@ -89,6 +79,17 @@ def add_opinion_view():
 def opinion_view(id):
     opinion = Opinion.query.get_or_404(id)
     return render_template('opinion.html', opinion=opinion)
+
+
+@app.errorhandler(404)
+def page_not_found(error):
+    return render_template('404.html'), 404
+
+
+@app.errorhandler(500)
+def internal_error(error):
+    db.session.rollback()
+    return render_template('500.html'), 500
 
 
 @app.cli.command('load_opinions')
