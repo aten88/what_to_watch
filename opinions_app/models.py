@@ -20,3 +20,8 @@ class Opinion(db.Model):
             timestamp=opinion.timestamp,
             added_by=opinion.added_by
         )
+
+    def from_dict(self, data):
+        for field in ['title', 'text', 'source', 'added_by']:
+            if field in data:
+                setattr(self, field, data[field])

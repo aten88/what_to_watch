@@ -6,14 +6,20 @@ from flask import render_template, redirect, url_for, flash, abort
 from . import app, db
 
 
+def random_opinion():
+    quantity = Opinion.query.count()
+    if quantity:
+        offset_value = randrange(quantity)
+        opinion = Opinion.query.offset(offset_value).first()
+        return opinion
+
+
 @app.route('/')
 def index_view():
-    quantity = Opinion.query.count()
-    if not quantity:
-        abort(404)
-    offset_value = randrange(quantity)
-    opinion = Opinion.query.offset(offset_value).first()
-    return render_template('opinion.html', opinion=opinion)
+    opinion = random_opinion()
+    if opinion is not None:
+        return render_template('opinion.html', opinion=opinion)
+    abort(404)
 
 
 @app.route('/add', methods=['GET', 'POST'])
